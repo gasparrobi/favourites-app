@@ -1,0 +1,15 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.pane {
+  min-width: 620px;
+  width: 100%;
+  min-height: 320px;
+  background-color: rgba(237, 237, 237, 1.0);
+  padding: 30px;
+  position: relative;
+  @include border-radius(3px);
+}

@@ -1,0 +1,57 @@
+@import '~sass/pane';
+
+%basic-col {
+  width: 100%;
+}
+
+.valid {
+  position: absolute;
+  bottom: 0px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  padding-right: 0;
+}
+
+form {
+  input[type="radio"]:nth-of-type(n + 2) {
+    margin-left: 20px;
+  }
+}
+
+label {
+  margin: 0;
+}
+
+.inline-form {
+  display: flex;
+  align-items: center;
+}
+
+.inline-form {
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+}
+
+.row {
+  width: 100%;
+  align-items: center;
+}
+
+.radio-row {
+  margin: 30px 0px;
+}
+
+.col-sm-3 {
+  @extend %basic-col;
+  padding-right: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.col-sm-9 {
+  @extend %basic-col;
+}

@@ -1,0 +1,47 @@
+
+<form class="favs pane">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-3">
+      <label for="exampleFormControlSelect1">Family member</label>
+      </div>
+      <div class="col-sm-9">
+      <select class="form-control form-control-sm" id="exampleFormControlSelect1" [(ngModel)]="selectedMember" name="asd" (ngModelChange)="onSelectChange($event)">
+        <option [ngValue]=null ></option>
+        <option *ngFor="let familyMember of familyMembers" [ngValue]="familyMember">
+          {{familyMember.fullName}}
+        </option>
+      </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row radio-row" *ngIf="ready">
+    <div class="col-sm-3">
+      <label>Favourite Item</label>
+    </div>
+    <div class="col-sm-9">
+
+      <form action="" class="inline-form">
+        <input type="radio" value="new movie" name="movie-music" (click)="radioOnClick($event)" checked> movie
+        <input type="radio" value="new music" name="movie-music" (click)="radioOnClick($event)" > music
+        <input type="radio" value="new book" name="movie-music" (click)="radioOnClick($event)" > book
+        <!--<input type="radio" value="new newMovie" name="movie-music" (click)="radioOnClick($event)" > newMovie-->
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <div *ngIf="ready">
+        <form [formGroup]="favouriteForm">
+          <app-movie *ngIf="enableList[0].enabled && ready" (movieData)="receiveMovieData($event)" [(ngModel)]="formData.film" formControlName="movieControl" ></app-movie>
+          <app-music *ngIf="enableList[1].enabled" (musicData)="receiveMusicData($event)" [(ngModel)]="formData.music" formControlName="musicControl"></app-music>
+          <app-book *ngIf="enableList[2].enabled" (favoriteData)="receiveBookData($event)" [(ngModel)]="formData.book" formControlName="bookControl" [existingItems]="existingBookItems" ></app-book>
+          <!--<app-test-movie *ngIf="enableList[3].enabled" (favoriteData)="receiveFavoriteData($event)" [(ngModel)]="formData.movie" formControlName="testMovieControl" [existingItems]="existingMovieItems"></app-test-movie>-->
+        </form>
+  </div>
+
+  <p class="valid" *ngIf="ready" style="margin-top: 200px;">Form is valid: {{ favouriteForm.valid ? 'true' : 'false' }}</p>
+</form>
